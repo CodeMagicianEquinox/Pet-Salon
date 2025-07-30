@@ -4,7 +4,7 @@ Welcome to **Pet Salon**, a fun and interactive project that registers pets, dis
 
 ---
 
-## 🌟 Features
+## ⭐ Features
 
 - Register pet data using JavaScript object literals
 - Dynamically display:
@@ -15,7 +15,7 @@ Welcome to **Pet Salon**, a fun and interactive project that registers pets, dis
 
 ---
 
-## 📂 Files Included
+## 📁 Files Included
 
 Pet-Salon/
 ├── petsalonindex.html # Main HTML file
@@ -25,3 +25,13 @@ Pet-Salon/
 ├── pet pictures.jpg # Cute logo/image used on the homepage
 
 └── README.md # Project documentation (this file)
+
+---
+
+⚙️ Technologies Used
+
+HTML
+
+CSS (embedded styling)
+
+JavaScript
