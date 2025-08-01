@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Salon</title>
+
+    <style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #fdf6ec;
+  color: #333;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  color: #6a4c93;
+  text-align: center;
+}
+
+p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+#answerField {
+  font-weight: bold;
+  color: #2c6e49;
+  font-size: 1.3em;
+}
+
+button {
+  background-color: #6a4c93;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #4c2a6a;
+}
+
+ul {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  list-style-type: square;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+li {
+  margin: 5px 0;
+}
+
+.logo-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.center-img {
+  display: block;
+  margin: 0 auto;
+  width: 180px;
+  border-radius: 50%;
+  border: 4px solid #ffe0f0;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+    </style>
+</head>
+
+<body>
+    
+<h1>🐾 Pet Salon 🐾</h1>
+
+<p>Pet count</p>
+<p id="answerField"></p>
+
+<p>Pet Names:</p>
+<ul id="petNamesList"></ul>
+
+<button onclick="petCount()">Pet Count</button>
+
+<div class="logo-container">
+  <img src="./pet pictures.jpg" alt="Cute Pet Logo" class="center-img">
+</div>
+
+    <script src="./petsalonjs.js"> </script>
+</body>
+</html>
