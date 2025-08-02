@@ -2,6 +2,8 @@
 
 Welcome to **Pet Salon**, a fun and interactive project that registers pets, displays how many are registered, and dynamically lists their names.
 
+🔗 [Live Demo](https://codemagicianequinox.github.io/Pet-Salon/)
+
 ---
 
 ## ⭐ Features
