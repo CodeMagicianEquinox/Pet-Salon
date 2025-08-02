@@ -91,6 +91,30 @@ li {
   <img src="./pet pictures.jpg" alt="Cute Pet Logo" class="center-img">
 </div>
 
+<h2>Register a New Pet</h2>
+<form id="petForm" onsubmit="register(event)">
+  <input type="text" id="name" placeholder="Pet Name" required><br>
+  <input type="number" id="age" placeholder="Age" required><br>
+  <input type="text" id="gender" placeholder="Gender" required><br>
+  <input type="text" id="breed" placeholder="Breed" required><br>
+
+  <label for="service">Service:</label>
+  <select id="service" required>
+    <option value="Grooming">Grooming</option>
+    <option value="Vaccination">Vaccination</option>
+    <option value="Checkup">Checkup</option>
+  </select><br>
+
+  <label for="type">Type:</label>
+  <select id="type" required>
+    <option value="Dog">Dog</option>
+    <option value="Cat">Cat</option>
+    <option value="Fish">Fish</option>
+  </select><br><br>
+
+  <button type="submit">Register Pet</button>
+</form>
+
     <script src="./petsalonjs.js"> </script>
 </body>
 </html>

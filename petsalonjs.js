@@ -44,3 +44,30 @@ function displayPetNames() {
     }
 }
 displayPetNames();
+
+function Pet(name, age, gender, breed, service, type) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+    this.breed = breed;
+    this.service = service;
+    this.type = type;
+}
+
+function register(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let gender = document.getElementById("gender").value;
+    let breed = document.getElementById("breed").value;
+    let service = document.getElementById("service").value;
+    let type = document.getElementById("type").value;
+
+    let newPet = new Pet(name, age, gender, breed, service, type);
+    pets.push(newPet);
+
+    displayPetNames();
+    petCount();
+    document.getElementById("petForm").reset();
+}
