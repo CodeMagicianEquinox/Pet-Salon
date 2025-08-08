@@ -1,39 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Salon</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
 
-   <title>Pet Salon</title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-   <body>
+</head>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Pet Salon</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="services.html">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="registration.html">Registration</a>
-        </li>
-      </ul>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Pet Salon</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="registration.html">Registration</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <!-- Page content -->
+  <div class="container mt-4">
+    <h1>Services</h1>
+
+    <form id="serviceForm" class="m-5 border p-4 bg-light">
+      <div class="mb-3">
+        <label class="form-label">Service</label>
+        <input type="text" id="serviceName" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <input type="text" id="serviceDescription" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" id="servicePrice" class="form-control" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="reset" class="btn btn-secondary">Cancel</button>
+    </form>
   </div>
-</nav>
 
-  <!-- Your page content goes under here -->
+  <!-- jQuery logic -->
+  <script>
+    // Constructor for Service
+    function Service(name, description, price) {
+      this.name = name;
+      this.description = description;
+      this.price = parseFloat(price);
+    }
 
-   <h1>Services</h1>
+    // Form submit logic
+    $("#serviceForm").submit(function (event) {
+      event.preventDefault();
 
-   </body>
+      // Get values
+      let name = $("#serviceName").val().trim();
+      let description = $("#serviceDescription").val().trim();
+      let price = $("#servicePrice").val().trim();
+
+      let isValid = true;
+
+      // Remove all previous red borders
+      $("#serviceForm input").removeClass("is-invalid");
+
+      if (name === "") {
+        $("#serviceName").addClass("is-invalid");
+        isValid = false;
+      }
+
+      if (description === "") {
+        $("#serviceDescription").addClass("is-invalid");
+        isValid = false;
+      }
+
+      if (price === "") {
+        $("#servicePrice").addClass("is-invalid");
+        isValid = false;
+      }
+
+      if (isValid) {
+        let newService = new Service(name, description, price);
+        console.log("✅ New Service Registered:", newService);
+
+        // Clear form and borders
+        $("#serviceForm")[0].reset();
+        $("#serviceForm input").removeClass("is-invalid");
+      }
+    });
+  </script>
+</body>
+</html>
