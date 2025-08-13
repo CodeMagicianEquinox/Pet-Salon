@@ -1,90 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Salon</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 
-   <title>Pet Salon</title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Pet Salon</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="services.html">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="registration.html">Registration</a>
-        </li>
-      </ul>
+<body>
+  <!-- Theme Toggle Button -->
+  <button id="theme-toggle" class="btn btn-outline-secondary" aria-pressed="false">
+    🌙 Dark
+  </button>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Pet Salon</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="registration.html">Registration</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <!-- Page content -->
+  <div class="container mt-4">
+    <h1>🐾 Pet Salon 🐾</h1>
+
+    <p>Pet count</p>
+    <p id="answerField"></p>
+
+    <p>Pet Names:</p>
+    <ul id="petNamesList"></ul>
+
+    <button onclick="petCount()">Pet Count</button>
+
+    <div class="logo-container">
+      <img src="./pet pictures.jpg" alt="Cute Pet Logo" class="center-img">
+    </div>
+
+    <h2>Register a New Pet</h2>
+    <form id="petForm" onsubmit="register(event)" class="m-5 border p-4 bg-light">
+      <div class="mb-3">
+        <input type="text" id="name" class="form-control" placeholder="Pet Name" required>
+      </div>
+      <div class="mb-3">
+        <input type="number" id="age" class="form-control" placeholder="Age" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" id="gender" class="form-control" placeholder="Gender" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" id="breed" class="form-control" placeholder="Breed" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="service" class="form-label">Service:</label>
+        <select id="service" class="form-select" required>
+          <option value="Grooming">Grooming</option>
+          <option value="Vaccination">Vaccination</option>
+          <option value="Checkup">Checkup</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="type" class="form-label">Type:</label>
+        <select id="type" class="form-select" required>
+          <option value="Dog">Dog</option>
+          <option value="Cat">Cat</option>
+          <option value="Fish">Fish</option>
+        </select>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Register Pet</button>
+      </div>
+    </form>
   </div>
-</nav>
 
-</head>
-
- <!-- Your page content goes under here -->
-
-<body>
-    
-<h1>🐾 Pet Salon 🐾</h1>
-
-<p>Pet count</p>
-<p id="answerField"></p>
-
-<p>Pet Names:</p>
-<ul id="petNamesList"></ul>
-
-<button onclick="petCount()">Pet Count</button>
-
-<div class="logo-container">
-  <img src="./pet pictures.jpg" alt="Cute Pet Logo" class="center-img">
-</div>
-
-<h2>Register a New Pet</h2>
-<form id="petForm" onsubmit="register(event)">
-  <input type="text" id="name" placeholder="Pet Name" required><br>
-  <input type="number" id="age" placeholder="Age" required><br>
-  <input type="text" id="gender" placeholder="Gender" required><br>
-  <input type="text" id="breed" placeholder="Breed" required><br>
-
-  <label for="service">Service:</label>
-  <select id="service" required>
-    <option value="Grooming">Grooming</option>
-    <option value="Vaccination">Vaccination</option>
-    <option value="Checkup">Checkup</option>
-  </select><br>
-
-  <label for="type">Type:</label>
-  <select id="type" required>
-    <option value="Dog">Dog</option>
-    <option value="Cat">Cat</option>
-    <option value="Fish">Fish</option>
-  </select><br><br>
-
-  <button type="submit">Register Pet</button>
-</form>
-
-    <script src="./petsalonjs.js"> </script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  <!-- Custom Scripts -->
+  <script src="./scripts/theme-toggle.js"></script>
+  <script src="./scripts/petsalonjs.js"></script>
 </body>
-
-</head>
-
-<body>
-    <script src="./scripts/petsalonjs.js"> </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-</body>
-
 </html>

@@ -1,35 +1,7 @@
-// Static pet objects
-let pet1 = {
-  name: "Spike",
-  age: 2,
-  gender: "Male",
-  service: "House dog",
-  breed: "Golden Retriever",
-  type: "Dog"
-};
+// Pet array to store registered pets
+let pets = [];
 
-let pet2 = {
-  name: "Max",
-  age: 10,
-  gender: "Male",
-  service: "Yard dog",
-  breed: "German Shepherd",
-  type: "Dog"
-};
-
-let pet3 = {
-  name: "Sarah",
-  age: 1,
-  gender: "Female",
-  service: "Gold Fish",
-  breed: "Rainbow Fish",
-  type: "Fish"
-};
-
-// Array of pets
-let pets = [pet1, pet2, pet3];
-
-// Constructor
+// Pet constructor function
 function Pet(name, age, gender, breed, service, type) {
   this.name = name;
   this.age = age;
@@ -39,86 +11,98 @@ function Pet(name, age, gender, breed, service, type) {
   this.type = type;
 }
 
-// Display pet names in a list
-function displayPetNames() {
-  let list = document.getElementById("petNamesList");
-  list.innerHTML = "";
-  for (let i = 0; i < pets.length; i++) {
-    let li = document.createElement("li");
-    li.textContent = pets[i].name;
-    list.appendChild(li);
-  }
-}
-
-// Count and display total pets
-function petCount() {
-  let total = pets.length;
-  document.getElementById("answerField").textContent = "Total Pets: " + total;
-}
-
-// Debugging output
-for (let i = 0; i < pets.length; i++) {
-  console.log(pets[i]);
-}
-
-// Show initial data
-displayPetNames();
-petCount();
-
-// Register pet with jQuery validation
+// Function to register a new pet
 function register(event) {
   event.preventDefault();
+  
+  // Get form values
+  const name = document.getElementById('name').value.trim();
+  const age = document.getElementById('age').value;
+  const gender = document.getElementById('gender').value.trim();
+  const breed = document.getElementById('breed').value.trim();
+  const service = document.getElementById('service').value;
+  const type = document.getElementById('type').value;
 
-  // Use jQuery to get values
-  let name = $("#name").val().trim();
-  let age = $("#age").val().trim();
-  let gender = $("#gender").val().trim();
-  let breed = $("#breed").val().trim();
-  let service = $("#service").val().trim();
-  let type = $("#type").val().trim();
-
-  let isValid = true;
-
-  // Reset all red borders
-  $("#petForm input, #petForm select").removeClass("is-invalid");
-
-  // Validate inputs
-  if (name === "") {
-    $("#name").addClass("is-invalid");
-    isValid = false;
-  }
-  if (age === "") {
-    $("#age").addClass("is-invalid");
-    isValid = false;
-  }
-  if (gender === "") {
-    $("#gender").addClass("is-invalid");
-    isValid = false;
-  }
-  if (breed === "") {
-    $("#breed").addClass("is-invalid");
-    isValid = false;
-  }
-  if (service === "") {
-    $("#service").addClass("is-invalid");
-    isValid = false;
-  }
-  if (type === "") {
-    $("#type").addClass("is-invalid");
-    isValid = false;
-  }
-
-  if (!isValid) return;
-
-  // Create and store new pet
-  let newPet = new Pet(name, age, gender, breed, service, type);
+  // Create new pet object
+  const newPet = new Pet(name, age, gender, breed, service, type);
+  
+  // Add to pets array
   pets.push(newPet);
-
-  // Update UI
-  displayPetNames();
-  petCount();
-
-  // Clear form and reset styles
-  $("#petForm")[0].reset();
-  $("#petForm input, #petForm select").removeClass("is-invalid");
+  
+  // Update displays
+  updatePetCount();
+  updatePetNamesList();
+  
+  // Clear form
+  document.getElementById('petForm').reset();
+  
+  // Show success message
+  alert(`${name} has been registered successfully!`);
+  
+  console.log('Registered pets:', pets);
 }
+
+// Function to count pets
+function petCount() {
+  updatePetCount();
+}
+
+// Function to update pet count display
+function updatePetCount() {
+  const answerField = document.getElementById('answerField');
+  if (answerField) {
+    answerField.textContent = pets.length;
+  }
+}
+
+// Function to update pet names list
+function updatePetNamesList() {
+  const petNamesList = document.getElementById('petNamesList');
+  if (petNamesList) {
+    petNamesList.innerHTML = '';
+    pets.forEach(pet => {
+      const li = document.createElement('li');
+      li.textContent = `${pet.name} (${pet.type})`;
+      petNamesList.appendChild(li);
+    });
+  }
+}
+
+// Initialize displays on page load
+$(document).ready(function() {
+  updatePetCount();
+  updatePetNamesList();
+});
+
+// Theme toggle functionality
+$(document).ready(function() {
+  const themeToggle = $('#theme-toggle');
+  const body = $('body');
+  
+  // Check for saved theme preference or default to light mode
+  const currentTheme = sessionStorage.getItem('theme') || 'light';
+  
+  // Apply the current theme on page load
+  if (currentTheme === 'dark') {
+    body.addClass('dark');
+    themeToggle.html('☀️ Light').attr('aria-pressed', 'true');
+  } else {
+    body.removeClass('dark');
+    themeToggle.html('🌙 Dark').attr('aria-pressed', 'false');
+  }
+  
+  // Theme toggle click handler
+  themeToggle.click(function() {
+    if (body.hasClass('dark')) {
+      // Switch to light mode
+      body.removeClass('dark');
+      themeToggle.html('🌙 Dark').attr('aria-pressed', 'false');
+      sessionStorage.setItem('theme', 'light');
+    } else {
+      // Switch to dark mode
+      body.addClass('dark');
+      themeToggle.html('☀️ Light').attr('aria-pressed', 'true');
+      sessionStorage.setItem('theme', 'dark');
+    }
+  });
+});
